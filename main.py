@@ -6,6 +6,7 @@ from pydantic import BaseModel
 app = FastAPI()
 
 
+# body for get_resume_feedback
 class RawResume(BaseModel):
 	job_title: str
 	job_description: str
