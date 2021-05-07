@@ -1,6 +1,8 @@
 import os
 from dataclasses import dataclass, field
 import uuid
+
+import en_core_web_sm
 import yake
 from yake.highlight import TextHighlighter
 import re
@@ -93,7 +95,8 @@ class Resume:
 	
 	def extract_included_and_missing_keywords(self):
 		# can prob put this in a separate function maybe later idk
-		nlp = spacy.load("en_core_web_sm")
+		nlp = en_core_web_sm.load()
+		# nlp = spacy.load("en_core_web_sm")
 		matcher = Matcher(nlp.vocab)
 		rules = [[{"TEXT": keyword}] for keyword in self.job_keywords]
 		matcher.add("keyword_matcher", rules)
