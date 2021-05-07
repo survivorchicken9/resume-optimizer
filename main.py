@@ -1,7 +1,9 @@
+import en_core_web_sm
 from fastapi import FastAPI
 from models.resume import Resume
 from typing import Union
 from pydantic import BaseModel
+from spacy.matcher import Matcher
 
 app = FastAPI()
 
@@ -12,6 +14,14 @@ class RawResume(BaseModel):
 	job_description: str
 	job_company: str
 	raw_resume: Union[str, list]
+	
+
+# load yake extractor
+yake_extractor = Resume.load_yake_extractor()
+
+# load spacy matcher
+spacy_model = en_core_web_sm.load()
+matcher = Matcher(spacy_model.vocab)
 
 
 @app.post("/")
@@ -28,8 +38,13 @@ def get_resume_feedback(raw_resume: RawResume) -> dict:
 		job_company=raw_resume.job_company,
 		raw_resume=raw_resume.raw_resume
 	)
-	all_keywords = resume.extract_all_job_keywords()
-	included_keywords, missing_keywords = resume.extract_included_and_missing_keywords()
+	all_keywords = resume.extract_all_job_keywords(
+		yake_extractor=yake_extractor
+	)
+	included_keywords, missing_keywords = resume.extract_included_and_missing_keywords(
+		matcher=matcher,
+		spacy_model=spacy_model
+	)
 	
 	resume_lines_feedback = resume.get_resume_feedback()
 	

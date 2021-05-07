@@ -1,13 +1,9 @@
 import os
 from dataclasses import dataclass, field
 import uuid
-
-import en_core_web_sm
 import yake
 from yake.highlight import TextHighlighter
 import re
-import spacy
-from spacy.matcher import Matcher
 from find_job_titles import FinderAcora
 from typing import Union
 
@@ -55,20 +51,19 @@ class Resume:
 			stopwords = g.read().splitlines()
 		return stopwords
 	
-	def extract_all_job_keywords(self) -> list:
+	def extract_all_job_keywords(self, yake_extractor) -> list:
 		# get skills and stopwords from txt files
 		programming_languages = Resume._load_programming_languages()
 		stopwords = Resume._load_stopwords()
 		
 		# getting keywords using yake extractor
-		yake_extractor = Resume.load_yake_extractor()
 		yake_keywords = [i[0] for i in yake_extractor.extract_keywords(self.job_description)]  # not including score
 		
 		# finding programming languages
 		raw_list = re.sub(r'[.!,;?()]', ' ', self.job_description).split()
 		processed_list = list(set([j for j in raw_list if j.lower() in [k.lower() for k in programming_languages]]))
 		
-		# removing duplicates, stopwords, and target company name
+		# removing duplicates, stopwords, and target company name (if exists)
 		all_keywords = list(set(yake_keywords + processed_list))
 		all_keywords = [m for m in all_keywords if m not in stopwords]
 		try:
@@ -93,11 +88,8 @@ class Resume:
 		
 		return sentences_with_keywords
 	
-	def extract_included_and_missing_keywords(self):
-		# can prob put this in a separate function maybe later idk
-		nlp = en_core_web_sm.load()
-		# nlp = spacy.load("en_core_web_sm")
-		matcher = Matcher(nlp.vocab)
+	def extract_included_and_missing_keywords(self, matcher, spacy_model):
+		# add keywords to spacy matcher
 		rules = [[{"TEXT": keyword}] for keyword in self.job_keywords]
 		matcher.add("keyword_matcher", rules)
 		
@@ -105,7 +97,7 @@ class Resume:
 		resume_str = self.raw_resume
 		if type(self.raw_resume) is list:
 			resume_str = " ".join([experience["description"] for experience in self.raw_resume])
-		raw_resume_doc = nlp(resume_str)
+		raw_resume_doc = spacy_model(resume_str)
 		raw_phrase_matches = matcher(raw_resume_doc)
 		
 		# adding all matched texts to results list

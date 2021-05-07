@@ -31,7 +31,6 @@ your resume directly through the app.
 
 ## TODO
 - add examples to readme
-- load models on startup (in main.py) to decrease time
 - improve full-text resume parser
 - tests??
 - refactor to have "job_description" class in models
