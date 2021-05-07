@@ -16,6 +16,6 @@
 
 ## citations
 Yet Another Keyword Extractor (Yake)
-- In-depth journal paper at Information Sciences Journal: Campos, R., Mangaravite, V., Pasquali, A., Jatowt, A., Jorge, A., Nunes, C. and Jatowt, A. (2020). YAKE! Keyword Extraction from Single Documents using Multiple Local Features. In Information Sciences Journal. Elsevier, Vol 509, pp 257-289. https://doi.org/10.1016/j.ins.2019.09.013
+- In-depth journal paper at Information Sciences Journal: Campos, R., Mangaravite, V., Pasquali, A., Jatowt, A., Jorge, A., Nunes, C. and Jatowt, A. (2020). YAKE! Keyword Extraction from Single Documents using Multiple Local Features. In Information Sciences Journal. Elsevier, Vol 509, pp 257-289. https://doi.org/10.1016/j.ins.2019.09.013   
 spaCy: Industrial-strength NLP
 - https://github.com/explosion/spaCy

@@ -15,6 +15,12 @@ class RawResume(BaseModel):
 
 @app.post("/")
 def get_resume_feedback(raw_resume: RawResume) -> dict:
+	"""
+	Instantiates new resume, searches for keywords in job_description with Yake, compare resume and job description
+	with spacy, return keywords found, missing keywords, and resume line by line feedback.
+	:param raw_resume: json with job_title, job_description, job_company, and raw_resume
+	:return: dict of results (check resume_lines_feedback for line by line feedback)
+	"""
 	resume = Resume(
 		job_title=raw_resume.job_title,
 		job_description=raw_resume.job_description,

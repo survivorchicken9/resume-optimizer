@@ -7,15 +7,15 @@ verify_ssl = true
 
 [packages]
 Jinja2 = "*"
-docxtpl = "*"
-python-docx = "*"
-spacy = "*"
-en_core_web_sm = {file = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.1.0/en_core_web_sm-2.1.0.tar.gz"}
+docxtpl = "0.11.4"
+python-docx = "0.8.10"
+spacy = "2.3.5"
+en_core_web_sm = {file = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.3.1/en_core_web_sm-2.3.1.tar.gz"}
 yake = "*"
-find-job-titles = "*"
-fastapi = "*"
-uvicorn = "*"
-pydantic = "*"
+find-job-titles = "0.7.0"
+fastapi = "0.63.0"
+uvicorn = "0.13.4"
+pydantic = "1.7.3"
 
 [requires]
 python_version = "3.8"
