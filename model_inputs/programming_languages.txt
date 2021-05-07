@@ -1,0 +1,46 @@
+Python
+Java
+JavaScript
+C#
+C
+C++
+PHP
+R
+Objective-C
+Objective C
+TypeScript
+Swift
+Kotlin
+Matlab
+Go
+VBA
+Ruby
+Rust
+Ada
+Scala
+Visual Basic
+Abap
+Lua
+Dart
+Perl
+Julia
+Cobol
+Groovy
+Haskell
+Delphi
+AWS
+Azure
+GCP
+Linux
+Hack
+SQL
+PostgreSQL
+DB2
+MS SQL Server
+Microsoft SQL Server
+MySQL
+T-SQL
+TSQL
+Transact SQL
+HTML
+CSS

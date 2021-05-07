@@ -1,0 +1,10 @@
+.idea
+.env
+__pycache__/
+*.pyc
+*.ipynb
+*.docx
+*.png
+cover_gen
+.ipynb_checkpoints
+test.py
