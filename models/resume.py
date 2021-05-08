@@ -76,17 +76,25 @@ class Resume:
 		
 		return self.job_keywords
 	
-	# not necessary for frontend
-	def get_highlighted_keywords_in_job_description(self):
+	# not used in frontend
+	@staticmethod
+	def get_highlighted_keywords_in_job_description(job_description: str, job_keywords: list, highlight_tag: str = "b"):
+		max_ngram_keyword_len = int(max([len(keyword.split()) for keyword in job_keywords]))
+		
 		# using yake custom highlighter to return job_description with highlighted keywords
-		custom_highlighter = TextHighlighter(max_ngram_size=3, highlight_pre="<b>", highlight_post="</b>")
-		highlighted_description = custom_highlighter.highlight(self.job_description, self.job_keywords)
+		custom_highlighter = TextHighlighter(
+			max_ngram_size=max_ngram_keyword_len,
+			highlight_pre=f"<{highlight_tag}>",
+			highlight_post=f"</{highlight_tag}>"
+		)
+		highlighted_description = custom_highlighter.highlight(job_description, job_keywords)
 		
-		# converting string to list and only including sentences with keywords
-		description_sentences = highlighted_description.split(".")
-		sentences_with_keywords = [s for s in description_sentences if "<b>" in s]
+		# maybe use this in another function
+		# # converting string to list and only including sentences with keywords
+		# description_sentences = highlighted_description.split(".")
+		# sentences_with_keywords = [s for s in description_sentences if "<b>" in s]
 		
-		return sentences_with_keywords
+		return highlighted_description
 	
 	def extract_included_and_missing_keywords(self, matcher, spacy_model):
 		# add keywords to spacy matcher
@@ -143,7 +151,7 @@ class Resume:
 		# this should look something like this (necessary input for the generating feedback)
 		# experience_metadata = {"Job Title": ["In this job I did something", "I also did other things"], ...}
 		self.experience_metadata = {key: value for (key, value) in experience_metadata.items() if len(value) > 1}
-
+	
 	def _convert_resume_list_to_dict(self):
 		# this is how we're actually converting the frontend input
 		# TODO need to ask nicole how to split the str

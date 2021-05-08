@@ -1,20 +1,11 @@
 import en_core_web_sm
 from fastapi import FastAPI
 from models.resume import Resume
-from typing import Union
-from pydantic import BaseModel
 from spacy.matcher import Matcher
+from models.api_inputs import RawResume, HighlightInput
 
 app = FastAPI()
 
-
-# body for get_resume_feedback
-class RawResume(BaseModel):
-	job_title: str
-	job_description: str
-	job_company: str
-	raw_resume: Union[str, list]
-	
 
 # load yake extractor
 yake_extractor = Resume.load_yake_extractor()
@@ -58,3 +49,18 @@ def get_resume_feedback(raw_resume: RawResume) -> dict:
 	}
 	
 	return resume_feedback
+
+
+@app.post("/highlighted_job_description")
+def get_highlighted_job_description(highlight_input: HighlightInput):
+	"""
+	Making use of the yake TextHighlighter feature to return a job description string that has keywords bolded
+	:param highlight_input: job_description as a string and job_keywords as a list
+	:return: job_description as a string with highlighted keywords in bold
+	"""
+	highlighted_job_description = Resume.get_highlighted_keywords_in_job_description(
+		job_description=highlight_input.job_description,
+		job_keywords=highlight_input.job_keywords
+	)
+	
+	return highlighted_job_description
