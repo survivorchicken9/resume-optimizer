@@ -3,6 +3,7 @@ This simple resume optimizer (**Resops**) extracts keywords from a job descripti
 the provided resume includes those keywords. The API is hosted on heroku and can be accessed by sending a POST
 request including a body with the target resume and job description (see example below). The Yake and Spacy packages
 are used for keyword searching and matching.  
+  
 You can also make use of the **hmm_app_name_tbd**, which uses the resops package (insert_link_here). This will 
 allow you to enter a job description and your resume, and then provide you with feedback/allow you to edit 
 your resume directly through the app.
@@ -35,7 +36,7 @@ your resume directly through the app.
 - tests??
 - refactor to have "job_description" class in models
 
-## citations
+## Citations
 - **Yet Another Keyword Extractor (Yake)**  
 In-depth journal paper at Information Sciences Journal: Campos, R., Mangaravite, V., Pasquali, A., Jatowt, A., Jorge, A., Nunes, C. and Jatowt, A. (2020). YAKE! Keyword Extraction from Single Documents using Multiple Local Features. In Information Sciences Journal. Elsevier, Vol 509, pp 257-289. https://doi.org/10.1016/j.ins.2019.09.013   
 - **spaCy: Industrial-strength NLP**  
