@@ -15,7 +15,7 @@ spacy_model = en_core_web_sm.load()
 matcher = Matcher(spacy_model.vocab)
 
 
-@app.post("/")
+@app.post("/get_resume_feedback")
 def get_resume_feedback(raw_resume: RawResume) -> dict:
 	"""
 	Instantiates new resume, searches for keywords in job_description with Yake, compare resume and job description
