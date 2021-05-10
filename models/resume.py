@@ -1,10 +1,9 @@
-import os
 from dataclasses import dataclass, field
 import uuid
 import yake
 from yake.highlight import TextHighlighter
-import re
 from find_job_titles import FinderAcora
+from models.job_description import JobDescription
 from typing import Union
 
 
@@ -39,37 +38,15 @@ class Resume:
 			features=None
 		)
 	
-	@staticmethod
-	def _load_programming_languages():
-		with open(os.path.join("model_inputs", "programming_languages.txt"), "r") as f:
-			programming_languages = f.read().splitlines()
-		return programming_languages
-	
-	@staticmethod
-	def _load_stopwords():
-		with open(os.path.join("model_inputs", "stopwords.txt"), "r") as g:
-			stopwords = g.read().splitlines()
-		return stopwords
-	
+	# instantiating new ob_description object and running extract method
 	def extract_all_job_keywords(self, yake_extractor) -> list:
-		# get skills and stopwords from txt files
-		programming_languages = Resume._load_programming_languages()
-		stopwords = Resume._load_stopwords()
+		job_description = JobDescription(
+			job_title=self.job_title,
+			job_description=self.job_description,
+			job_company=self.job_company
+		)
 		
-		# getting keywords using yake extractor
-		yake_keywords = [i[0] for i in yake_extractor.extract_keywords(self.job_description)]  # not including score
-		
-		# finding programming languages
-		raw_list = re.sub(r'[.!,;?()]', ' ', self.job_description).split()
-		processed_list = list(set([j for j in raw_list if j.lower() in [k.lower() for k in programming_languages]]))
-		
-		# removing duplicates, stopwords, and target company name (if exists)
-		all_keywords = list(set(yake_keywords + processed_list))
-		all_keywords = [m for m in all_keywords if m not in stopwords]
-		try:
-			all_keywords.remove(self.job_company)
-		except ValueError:
-			pass
+		all_keywords = job_description.extract_job_description_keywords(yake_extractor)
 		
 		# adding found keywords to class instance
 		self.job_keywords = all_keywords
