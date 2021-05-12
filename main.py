@@ -3,9 +3,10 @@ from fastapi import FastAPI
 from models.resume import Resume
 from spacy.matcher import Matcher
 from models.api_inputs import RawResume, HighlightInput
+from fastapi.responses import FileResponse
 
 app = FastAPI()
-
+# local run command: uvicorn main:app --reload
 
 # load yake extractor
 yake_extractor = Resume.load_yake_extractor()
@@ -64,3 +65,15 @@ def get_highlighted_job_description(highlight_input: HighlightInput):
 	)
 	
 	return highlighted_job_description
+
+
+@app.get("/")
+def main():
+	return "hello there check out the docs if you're lost just add /docs to your current URL"
+
+
+# @app.get("/generate_cover_letter")
+# def generate_cover_letter():
+# 	# return FileResponse("test.docx")
+# 	# TODO use cover_letter model here
+# 	return "wip"
