@@ -1,9 +1,9 @@
 import en_core_web_sm
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
 from models.resume import Resume
 from spacy.matcher import Matcher
 from models.api_inputs import RawResume, HighlightInput
-from fastapi.responses import FileResponse
 
 app = FastAPI()
 # local run command: uvicorn main:app --reload
@@ -19,8 +19,9 @@ matcher = Matcher(spacy_model.vocab)
 @app.post("/get_resume_feedback")
 def get_resume_feedback(raw_resume: RawResume) -> dict:
     """
-    Instantiates new resume, searches for keywords in job_description with Yake, compare resume and job description
-    with spacy, return keywords found, missing keywords, and resume line by line feedback.
+    Instantiates new resume, searches for keywords in job_description with Yake,
+    compare resume and job description with spacy, return keywords found, missing keywords,
+    and resume line by line feedback.
     :param raw_resume: json with job_title, job_description, job_company, and raw_resume
     :return: dict of results (check resume_lines_feedback for line by line feedback)
     """
