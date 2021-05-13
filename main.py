@@ -1,12 +1,20 @@
 import en_core_web_sm
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from models.resume import Resume
 from spacy.matcher import Matcher
 from models.api_inputs import RawResume, HighlightInput
 
-app = FastAPI()
 # local run command: uvicorn main:app --reload
+
+# set up app and CORS middleware
+app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["GET", "POST"]
+)
 
 # load yake extractor
 yake_extractor = Resume.load_yake_extractor()
