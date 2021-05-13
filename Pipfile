@@ -15,7 +15,7 @@ yake = "*"
 find-job-titles = "0.7.0"
 fastapi = "0.63.0"
 uvicorn = "0.13.4"
-pydantic = "1.7.3"
+pydantic = "1.8.2"
 aiofiles = "*"
 
 [requires]
