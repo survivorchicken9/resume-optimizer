@@ -4,7 +4,7 @@ import yake
 from yake.highlight import TextHighlighter
 from find_job_titles import FinderAcora
 from models.job_description import JobDescription
-from typing import Union
+from typing import Union, Tuple
 
 
 @dataclass
@@ -17,6 +17,7 @@ class Resume:
     missing_keywords: list = field(default=None)
     experience_metadata: dict = field(default_factory=lambda: dict())
     job_keywords: list = field(default=None)
+    job_skills: dict = field(default=None)
     final_resume: str = field(default=None)
     _id: str = field(default_factory=lambda: uuid.uuid4().hex)
 
@@ -38,20 +39,17 @@ class Resume:
             features=None,
         )
 
-    # instantiating new ob_description object and running extract method
-    def extract_all_job_keywords(self, yake_extractor) -> list:
+    # instantiating new job_description object and running extract methods
+    def extract_all_job_keywords(self, yake_extractor) -> Tuple[list, dict]:
         job_description = JobDescription(
             job_title=self.job_title,
             job_description=self.job_description,
             job_company=self.job_company,
         )
 
-        all_keywords = job_description.extract_job_description_keywords(yake_extractor)
+        self.job_keywords, self.job_skills = job_description.extract_job_description_keywords(yake_extractor)
 
-        # adding found keywords to class instance
-        self.job_keywords = all_keywords
-
-        return self.job_keywords
+        return self.job_keywords, self.job_skills
 
     # not used in frontend
     @staticmethod

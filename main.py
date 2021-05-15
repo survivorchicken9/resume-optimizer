@@ -41,7 +41,7 @@ def get_resume_feedback(raw_resume: RawResume) -> dict:
         job_company=raw_resume.job_company,
         raw_resume=raw_resume.raw_resume,
     )
-    all_keywords = resume.extract_all_job_keywords(yake_extractor=yake_extractor)
+    all_keywords, all_skills = resume.extract_all_job_keywords(yake_extractor=yake_extractor)
     included_keywords, missing_keywords = resume.extract_included_and_missing_keywords(
         matcher=matcher, spacy_model=spacy_model
     )
@@ -52,6 +52,7 @@ def get_resume_feedback(raw_resume: RawResume) -> dict:
     resume_feedback = {
         "job_title": raw_resume.job_title,
         "all_keywords": all_keywords,
+        "skills": all_skills,
         "included_keywords": included_keywords,
         "missing_keywords": missing_keywords,
         "resume_lines_feedback": resume_lines_feedback,
