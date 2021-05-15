@@ -47,7 +47,8 @@ def get_resume_feedback(raw_resume: RawResume) -> dict:
     )
 
     resume_lines_feedback = resume.get_resume_feedback()
-
+    resume_keyword_score = resume.get_resume_keyword_score()
+    
     # combine results into one dict
     resume_feedback = {
         "job_title": raw_resume.job_title,
@@ -55,6 +56,7 @@ def get_resume_feedback(raw_resume: RawResume) -> dict:
         "skills": all_skills,
         "included_keywords": included_keywords,
         "missing_keywords": missing_keywords,
+        "keyword_score"resume_keyword_score,
         "resume_lines_feedback": resume_lines_feedback,
     }
 

@@ -194,6 +194,9 @@ class Resume:
             )
 
         return resume_feedback
+    
+    def get_resume_keyword_score(self) -> str:
+        return f"{len(self.included_keywords)}/{len(self.job_keywords)}"
 
     def generate_suggestions_from_keywords(self):
         # textgenrnn
