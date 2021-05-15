@@ -56,7 +56,7 @@ def get_resume_feedback(raw_resume: RawResume) -> dict:
         "skills": all_skills,
         "included_keywords": included_keywords,
         "missing_keywords": missing_keywords,
-        "keyword_score"resume_keyword_score,
+        "keyword_score": resume_keyword_score,
         "resume_lines_feedback": resume_lines_feedback,
     }
 
