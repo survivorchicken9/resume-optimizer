@@ -3,10 +3,12 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from models.resume import Resume
+from models.cover_letter import CoverLetter
 from spacy.matcher import Matcher
-from models.api_inputs import RawResume, HighlightInput
+from models.api_inputs import RawResume, HighlightInput, RawCoverLetter
 
-# local run command: uvicorn main:app --reload
+# local run command:
+# uvicorn main:app --reload
 
 # set up app and CORS middleware
 app = FastAPI()
@@ -73,13 +75,23 @@ def get_highlighted_job_description(highlight_input: HighlightInput):
     return highlighted_job_description
 
 
+# @app.post("/generate_cover_letter")
+# def generate_cover_letter(raw_cover_letter: RawCoverLetter):
+#     # TODO https://fastapi.tiangolo.com/tutorial/request-files/
+#     cover_letter = CoverLetter(
+#         input_cover_letter=raw_cover_letter.cover_letter_docx,
+#         first_name=raw_cover_letter.first_name,
+#         last_name=raw_cover_letter.last_name,
+#         job_title=raw_cover_letter.job_title,
+#         job_company=raw_cover_letter.job_company
+#     )
+#
+#     # generate and return cover letter (and delete after returning)
+#     cover_letter_file_name = cover_letter.generate_final_cover_letter()
+#
+#     return FileResponse(cover_letter_file_name)
+
+
 @app.get("/")
 def main():
     return "hello there check out the docs if you're lost just add /docs to your current URL"
-
-
-# @app.get("/generate_cover_letter")
-# def generate_cover_letter():
-# 	# return FileResponse("test.docx")
-# 	# TODO use cover_letter model here
-# 	return "wip"
