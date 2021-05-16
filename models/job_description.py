@@ -1,6 +1,5 @@
 from dataclasses import dataclass, field
 from common.utils import load_programming_languages, load_stopwords, load_design_tools
-import re
 from acora import AcoraBuilder
 
 
@@ -23,7 +22,8 @@ class JobDescription:
         ]  # not including score in tuple
 
         # removing duplicates, stopwords, and target company name (if exists)
-        all_keywords = [m for m in yake_keywords if m not in stopwords]
+        punctuation_chars = "!\"#$%&'()*+,-./:;<=>?@[]^_`{|}~\\"
+        all_keywords = [m for m in yake_keywords if m not in stopwords and m[0] not in punctuation_chars]
         try:
             all_keywords.remove(self.job_company)
         except ValueError:
