@@ -30,7 +30,7 @@ class JobDescription:
             pass
 
         # adding found keywords to class instance
-        self.job_yake_keywords = all_keywords
+        self.job_yake_keywords = list(set(all_keywords))
 
         return self.job_yake_keywords
 
@@ -46,7 +46,7 @@ class JobDescription:
         found_skills_list = list()  # easy to add to yake keywords in final function
         for skill_type, skill_list in skills_base_dict.items():
             acora_search_engine = AcoraBuilder(skill_list).build()
-            found_skills_dict[skill_type] = [k[0] for k in acora_search_engine.findall(self.job_description)]
+            found_skills_dict[skill_type] = list(set([k[0] for k in acora_search_engine.findall(self.job_description)]))
             found_skills_list += found_skills_dict[skill_type]
         self.job_skills = found_skills_dict
         return found_skills_list
