@@ -158,7 +158,7 @@ class Resume:
         # BUT we take care of checking that in _convert_resume_raw_to_dict
         for experience in self.raw_resume:
             self.experience_metadata[experience["title"]] = [
-                line for line in experience["description"].split("\n")
+                line for line in re.split(r"\n|•|○|∙", experience["description"])
             ]
 
     def _convert_resume_raw_to_dict(self) -> dict:
