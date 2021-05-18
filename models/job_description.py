@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from common.utils import load_programming_languages, load_stopwords, load_design_tools
+from common.utils import load_programming_languages, load_stopwords, load_design_tools, load_business_analyst_skills
 from acora import AcoraBuilder
 
 
@@ -38,7 +38,8 @@ class JobDescription:
         # loading skill keywords from txt files
         skills_base_dict = {
             "programming_languages": load_programming_languages(),
-            "design_tools": load_design_tools()
+            "design_tools": load_design_tools(),
+            "business_analyst_skills": load_business_analyst_skills()
         }
         
         # finding other keywords from job field skill txt inputs

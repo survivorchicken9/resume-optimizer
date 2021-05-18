@@ -13,6 +13,12 @@ def load_design_tools():
     return design_tools
 
 
+def load_business_analyst_skills():
+    with open(os.path.join("model_inputs", "business_analyst_skills.txt"), "r") as f:
+        business_analyst_skills = f.read().splitlines()
+    return business_analyst_skills
+
+
 def load_stopwords():
     with open(os.path.join("model_inputs", "stopwords.txt"), "r") as g:
         stopwords = g.read().splitlines()

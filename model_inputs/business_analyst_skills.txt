@@ -1,0 +1,30 @@
+SQL
+data visualization
+data visualisation
+Tableau
+Looker
+Sisense
+Power BI
+PowerBI
+Excel
+Python
+R
+statistics
+predictive analytics
+text analytics
+data mining
+Quicksight
+QuickSight
+DataStudio
+data modeling
+data analysis
+data models
+SPSS
+SAS
+CRM
+Qlik
+Metabase
+exploratory data analysis
+root cause analysis
+modeling business processes
+forecast
