@@ -5,6 +5,7 @@ from yake.highlight import TextHighlighter
 from find_job_titles import FinderAcora
 from models.job_description import JobDescription
 from typing import Union, Tuple
+import re
 
 
 @dataclass
@@ -120,7 +121,7 @@ class Resume:
         # init metadata dict and enumerate so we get the index of each line
         experience_metadata = dict()
         resume_lines_enumerated = enumerate(
-            [line for line in self.raw_resume.split("\n") if line != ""]
+            [line for line in re.split(r"\n|•|○|∙", self.raw_resume) if line != ""]
         )  # remove empty lines
         resume_lines_list = list(resume_lines_enumerated)
 
