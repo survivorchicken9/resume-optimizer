@@ -35,6 +35,7 @@ def get_resume_feedback(raw_resume: RawResume) -> dict:
     :param raw_resume: json with job_title, job_description, job_company, and raw_resume
     :return: dict of results (check resume_lines_feedback for line by line feedback)
     """
+    # TODO add a new endpoint so that input str and input list preprocessing don't have to be handled confusingly
     resume = Resume(
         job_title=raw_resume.job_title,
         job_description=raw_resume.job_description,

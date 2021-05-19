@@ -153,8 +153,7 @@ class Resume:
 
     def _convert_resume_list_to_dict(self):
         # this is how we're actually converting the frontend input
-        # TODO need to ask nicole how to split the str
-        # also this warning makes sense since technically this could be a string and not a list
+        # also the warning below makes sense since technically this could be a string and not a list
         # BUT we take care of checking that in _convert_resume_raw_to_dict
         for experience in self.raw_resume:
             self.experience_metadata[experience["title"]] = [

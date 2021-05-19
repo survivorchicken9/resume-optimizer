@@ -4,18 +4,17 @@ the provided resume includes those keywords. The API is hosted on heroku and can
 request including a body with the target resume and job description (see example below). The Yake and Spacy packages
 are used for keyword searching and matching.  
   
-You can also make use of the **hmm_app_name_tbd**, which uses the resops package (insert_link_here). This will 
+You can also make use of the **resume rescue** web app, which uses the resops package (insert_link_here). This will 
 allow you to enter a job description and your resume, and then provide you with feedback/allow you to edit 
 your resume directly through the app.
 
 ## Project hosting links
 - API: https://dashboard.heroku.com/apps/resume-optimizer
-- hmm_app_name_tbd: insert_link_here
+- resume rescue site: insert_link_here
 
 ## How it works
-- include a diagram or something to explain your confusing code
-- yake used for keyword extract (also took the stopwords and used in inputs)
-- in addition to keywords gotten from yake also takes top programming languages from "https://pypl.github.io/PYPL.html"
+- Main endpoint used for frontend (job description parser and resume optimizer) is "/get_resume_feedback"
+- Extracting keywords using YAKE and hard skills lists (stored in text files inside common.keyword_inputs)
 
 ## Installing 
 This project is keeping track of dependencies using pipenv. To install all required packages and the 
@@ -47,18 +46,30 @@ import requests
 resume_feedback_local = requests.post("http://127.0.0.1:8000/get_resume_feedback", json=data).text
 resume_feedback_api = requests.post("https://resume-optimizer.herokuapp.com/get_resume_feedback", json=data).text
 ```
+
+You'll get a dictionary back with the results which should look something like this:
+```
+resume_feedback = {
+    "job_title": "Software Engineer",
+    "all_keywords": ["Python", "SQL", "implement API", "experience with predictive analytics", ...],
+    "skills": ["Python", "SQL", ...],
+    "included_keywords": ["Python", "SQL"],
+    "missing_keywords": ["implement API", "experience with predictive analytics", ...],
+    "keyword_score": "2/n",
+    "resume_lines_feedback": [{"job_title": "Software Engineer", "lines_with_keyword": [], "lines_without_keyword": []}, ...],
+}
+```
+
 You can visit the [API docs](https://resume-optimizer.herokuapp.com/docs) for more information.
 
 
 ### Python (integration)
-- TODO write example
+- TODO finish the code and write examples
 
 ## TODO
-- finish adding examples to readme
 - improve full-text resume parser
-- tests????
+- ok there are tests now but they need to be better
 - improve job_description class keyword extraction methods
-- include graphic design keyword match from txt
 
 ## Citations
 - **Yet Another Keyword Extractor (Yake)**  
