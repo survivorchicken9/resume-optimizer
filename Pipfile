@@ -17,6 +17,7 @@ fastapi = "0.63.0"
 uvicorn = "0.13.4"
 pydantic = "1.7.3"
 aiofiles = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.8"

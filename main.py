@@ -96,5 +96,7 @@ def get_highlighted_job_description(highlight_input: HighlightInput):
 
 
 @app.get("/")
-def main():
-    return "hello there check out the docs if you're lost just add /docs to your current URL"
+def home():
+    return {
+        "msg": "hello there check out the docs if you're lost just add /docs to your current URL"
+    }
