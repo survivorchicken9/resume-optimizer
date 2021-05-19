@@ -4,6 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pytest = "6.2.4"
 
 [packages]
 Jinja2 = "*"
@@ -17,7 +18,6 @@ fastapi = "0.63.0"
 uvicorn = "0.13.4"
 pydantic = "1.7.3"
 aiofiles = "*"
-pytest = "*"
 
 [requires]
 python_version = "3.8"
