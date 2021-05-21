@@ -16,14 +16,18 @@ def test_home():
 
 def test_get_resume_feedback_list_input():
 	response = client.post("/get_resume_feedback", json=data_list_test)
+	result = response.json()
 	assert response.status_code == 200
-	assert isinstance(response.json(), dict)
+	assert isinstance(result, dict)
+	assert len(result["all_keywords"]) > 0
 	
 	
 def test_get_resume_feedback_str_input():
 	response = client.post("/get_resume_feedback", json=data_str_test)
+	result = response.json()
 	assert response.status_code == 200
-	assert isinstance(response.json(), dict)
+	assert isinstance(result, dict)
+	assert len(result["all_keywords"]) > 0
 
 
 def test_get_highlighted_job_description():

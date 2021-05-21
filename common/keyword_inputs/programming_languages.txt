@@ -44,3 +44,18 @@ TSQL
 Transact SQL
 HTML
 CSS
+scikit-learn
+PyTorch
+Caffe
+TensorFlow
+Theano
+Pandas
+Keras
+NumPy
+Matplotlib
+SciPy
+Scrapy
+BeautifulSoup
+Seaborn
+Bokeh
+Plotly
