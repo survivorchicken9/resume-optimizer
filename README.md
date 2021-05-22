@@ -4,13 +4,13 @@ the provided resume includes those keywords. The API is hosted on heroku and can
 request including a body with the target resume and job description (see example below). The Yake and Spacy packages
 are used for keyword searching and matching.  
   
-You can also make use of the **resume rescue** web app, which uses the resops package (insert_link_here). This will 
-allow you to enter a job description and your resume, and then provide you with feedback/allow you to edit 
-your resume directly through the app.
+You can also make use of the [resume rescue](https://resume-optimizer.herokuapp.com/docs) web app, which uses 
+the resops package. This will allow you to enter a job description and your resume, and then provide you with 
+feedback/allow you to edit your resume directly through the app.
 
 ## Project hosting links
 - API: https://dashboard.heroku.com/apps/resume-optimizer
-- resume rescue site: insert_link_here
+- resume rescue site: https://nicole-ip.github.io/resume-rescue/
 
 ## How it works
 - Main endpoint used for frontend (job description parser and resume optimizer) is "/get_resume_feedback"
