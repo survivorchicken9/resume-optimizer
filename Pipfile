@@ -14,7 +14,7 @@ spacy = "2.3.5"
 en_core_web_sm = {file = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.3.1/en_core_web_sm-2.3.1.tar.gz"}
 yake = "*"
 find-job-titles = "0.7.0"
-fastapi = "0.63.0"
+fastapi = "0.65.2"
 uvicorn = "0.13.4"
 pydantic = "1.7.3"
 aiofiles = "*"
